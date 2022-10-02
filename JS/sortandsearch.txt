@@ -1,0 +1,39 @@
+function qSort(array){
+    if(array.length<2){
+        return array;
+    }
+    let pivot = array[array.length - 1];
+    let left = [];
+    let right = [];
+    for(let i=0; i<array.length-1; i++){
+        if(array[i]<pivot){
+            left.push(array[i]);
+        }else{
+            right.push(array[i]);
+        }
+    }
+    return [...qSort(left),pivot, ...qSort(right)]
+}
+const a = [8,3,4,2,7,9,1];
+
+console.log(qSort(a));
+
+
+function bSearch(target, start, end){
+    if(start > end){
+        return "Not Found";
+    }
+    
+    const middle = Math.floor((start+end)/2);
+    
+    if(a[middle] === target){
+        return "Found it at index "+middle;
+    }
+    if(a[middle]>target){
+        return bSearch(target, start, middle-1);
+    }
+    if(a[middle]<target){
+        return bSearch(target, middle+1, end)
+    }
+}
+console.log(bSearch(7, 0, a.length-1));
